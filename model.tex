@@ -1,0 +1,244 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{savesym}
+\savesymbol{iint}
+\savesymbol{iiint}
+\usepackage{amsmath}
+\usepackage{ctex}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{keyval, xcolor, calc,ifthen}
+\tolerance=1000
+\usepackage{listings}
+\hypersetup{CJKbookmarks=true}
+\providecommand{\alert}[1]{\textbf{#1}}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}  
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}  
+\definecolor{mymauve}{rgb}{0.58,0,0.82}  
+  
+
+\lstset{ %  
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}  
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code  
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace  
+  breaklines=true,                 % sets automatic line breaking  
+  captionpos=bl,                    % sets the caption-position to bottom  
+  commentstyle=\color{mygreen},    % comment style  
+  deletekeywords={...},            % if you want to delete keywords from the given language  
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code  
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8  
+  frame=single,                    % adds a frame around the code  
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)  
+  keywordstyle=\color{blue},       % keyword style  
+  %language=Python,                 % the language of the code  
+  morekeywords={*,...},            % if you want to add more keywords to the set  
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)  
+  numbersep=5pt,                   % how far the line-numbers are from the code  
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers  
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))  
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'  
+  showstringspaces=false,          % underline spaces within strings only  
+  showtabs=false,                  % show tabs within strings adding particular underscores  
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered  
+  stringstyle=\color{orange},     % string literal style  
+  tabsize=2,                       % sets default tabsize to 2 spaces  
+  %title=myPython.py                   % show the filename of files included with \lstinputlisting; also try caption instead of title  
+}  
+
+
+
+\title{Homework3}
+\author{计科80 杨乾澜}
+\date{\today}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs Org-mode version 7.9.3f}}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Chapter 12}
+
+\subsection{Problem 5}
+
+\begin{lstlisting}
+clear Z
+incr X
+while X not 0:
+    clear temp1
+    while Y not 0:
+        decr Y
+        incr temp1
+    while temp1 not 0:
+        decr temp1
+        incr Y
+        decr X
+    incr Z
+while Z not 0:
+    decr Z
+    incr X
+decr X
+\end{lstlisting}
+
+X represents the final answer.
+
+\subsection{Problem 15}
+
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\begin{tabular}{|c|c|c|c|c|}% 通过添加 | 来表示是否需要绘制竖线
+\hline  % 在表格最上方绘制横线
+Current state & \tabincell{c}{Current cell \\ content} & Value to write & Direction to move &\tabincell{c}{ New state \\ to enter}\\
+\hline
+START & * & * & Left & PACK\\
+\hline
+PACK  & 0 & * & Right & MOVE0\\
+\hline
+PACK & 1 & * & Right & MOVE1\\
+\hline
+MOVE0 & 0 & 0 & Right & MOVE0 \\
+\hline
+MOVE0 & 1 & 1 & Right & MOVE0 \\
+\hline
+MOVE1 & 0 & 0 & Right & MOVE1 \\
+\hline
+MOVE1 & 1 & 1 & Right & MOVE1 \\
+\hline
+MOVE0 & * & * & Left & WRITE0 \\
+\hline
+MOVE1 & * & * & Left & WRITE1 \\
+\hline
+WRITE0 & 1 & 0 & Left & WRITE1 \\
+\hline
+WRITE0 & 0 & 0 & Left & WRITE0 \\
+\hline
+WRITE1 & 1 & 1 & Left & WRITE1 \\
+\hline
+WRITE1 & 0 & 1 & Left & WRITE0 \\
+\hline
+WRITE0 & * & 0 & Left & PACK \\
+\hline
+WRITE1 & * & 1 & Right & PACK\\
+\hline
+PACK & * & * & No move & HALT\\
+
+\hline % 在表格最下方绘制横线
+\end{tabular}
+
+\subsection{Problem 22}
+
+Approach 1: Ask him/her Which number is equal to one plus one. If he/she say two then he/she is a truth teller, otherwise he/she is a liar.
+
+Approach 2: Ask him/her to write down the answer of "Which person are you, a truth teller or a liar?" on a paper, then tell you the words written on it. As a result, what he told you is the identity of him.
+
+\subsection{Problem 24}
+
+The halting problem shows that there are some problems that couldn't be solved by machines, which means the capabilities of machines is limited.
+
+\subsection{Problem 25}
+
+During we asking all the people, there exists at least people answering that his/her birthday is on that day.
+
+After we asking all the people, there wasn't any people answering that his/her birthday is on that day.
+
+We can enumerate all the positive numbers from 0 to bigger, if there exists some number we wanted, we will find it eventually. However, the time of this algorithm may be infinite.
+
+I think we can't solve this problem.
+
+\subsection{Problem 32}
+
+
+
+\subsection{Problem 35}
+
+``Select three numbers between 1 and 100." is nondetermin.
+
+``Select one of the chosen numbers and give that number as the answer" is nondetermin.
+
+\subsection{Problem 36}
+
+The algorithm has a poly-nomial complexity.Because "Pick a collection of numbers" will take at last $O(n)$ time and check if the sum of these numbers is equal to 125 takes also $O(n)$ time. So the total complexity of the algorithm is $O(n)$.
+
+\subsection{Problem 43}
+
+Polynomial problems: Sorting an list of numbers
+Nonpolynomial problems: Travelling salesman problem
+Unsolvable problems: The Halting problem
+
+\subsection{Problem 45}
+
+The answer is "257, 771, 391, 304".
+
+My algorithm is to enumerate all the subset of the list and check if their sum is equal to 1723. The complexity is $O(2^n *n )$.
+
+\subsection{Problem 50}
+
+The private key is 43.
+
+In this case, n is small enough to find $p=7$ and $q=11$ so that $p*q = n$ in a $O(n)$ time. After that, we can find the private key d which satisfys $d*e = k(p-1)(q-1) +1$ with a extended-Euclidean Algorithm. 
+
+\section{Chapter 6}
+
+\subsection{Problem 4}
+
+Suppose the variable X is tored in the memory cell whose address is 1A, while Y is 1B, and Z 1C, W 1D.
+
+\begin{lstlisting}
+2000
+111A
+121B
+131D
+B10E
+5412
+B010
+5423
+341C
+C000
+\end{lstlisting}
+
+\subsection{Problem 22}
+
+\begin{lstlisting}
+CASE W IS
+  WHEN 5=> Z:=7;
+  WHEN 6=> Y:=7;
+  WHEN 7=> X:=7;
+END CASE;
+\end{lstlisting}
+
+\subsection{Problem 33}
+
+This sentence can represent X = (3+2) *5 or X = 3+(2*5),either.
+
+\subsection{Problem 44}
+
+
+\begin{figure}[h]%%图
+	\includegraphics[width=0.4\linewidth]{phrase_tree2.jpg}  %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下
+\end{figure}
+
+\subsection{Problem 45}
+
+First of all, we can load 2 to a register. Then we can predict that X equals to 5 so that we can let compute Z by X + 2. If X doesn't equal to 5, we can let Z be Z + 2 then. In this way, we only need to load 2 to the register.
+
+\section{Bonus problem}
+
+\end{document} 
